@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogMonitor", "NLogMonitor1\NLogMonitor.csproj", "{CAC561CB-0CC0-4A26-97FB-D43E09577C84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogMonitor", "NLogMonitor\NLogMonitor.csproj", "{CAC561CB-0CC0-4A26-97FB-D43E09577C84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
