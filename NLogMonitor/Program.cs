@@ -6,6 +6,8 @@ using System.Data.SQLite;
 using System.Data.Common;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
+using System.Net;
 
 namespace LogMonitor
 {
@@ -43,6 +45,16 @@ namespace LogMonitor
         }
 
         static void send_email(String mail_content)
-        { }
+        {
+            MailAddress ma_from = new MailAddress(MailConfiguration.Instance.From);
+
+            MailMessage m = new MailMessage(ma_from, ma_from);
+            m.Body = mail_content;
+
+            SmtpClient client = new SmtpClient(SmtpConfiguration.Instance.Host, SmtpConfiguration.Instance.Port);
+            client.EnableSsl = true;
+            client.Credentials = new NetworkCredential(SmtpConfiguration.Instance.User, SmtpConfiguration.Instance.Pass);
+            client.Send(m);
+        }
     }
 }
