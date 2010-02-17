@@ -13,29 +13,36 @@ namespace LogMonitor
     {
         static void Main(string[] args)
         {
-            IDbConnection conn = new SQLiteConnection("Data Source=NLogMonitor.sqlite3;Version=3;");
-            conn.Open();
-            
-            string[] logs_files_name = Directory.GetFiles("../../logs");
+            string[] logs_files_name = Directory.GetFiles(AppConfiguration.Instance.Directory);
             
             foreach (string file_name in logs_files_name)
             {
                 string file_content = File.ReadAllText(file_name);
-                process_content(file_name, file_content, conn);                
+                StringBuilder mail_content = new StringBuilder();
+                mail_content.Append(process_content(".*LM_ERROR.*", file_name, file_content)); // procesamos errores
+                mail_content.Append(process_content(".*LM_WARNING.*", file_name, file_content)); // procesamos errores
+                if (mail_content.Length != 0)   // si el fichero ha tenido algun error
+                {
+                    send_email(mail_content.ToString());   
+                }               
             }
         }
 
-        static void process_content(string file_name, string file_content, IDbConnection conn)
+        static String process_content(string pattern, string file_name, string file_content)
         {
-            Regex reg = new Regex(".*LM_DEBUG.*");
+            Regex reg = new Regex(pattern);
 
             MatchCollection mc = reg.Matches(file_content);
+            StringBuilder line_matched = new StringBuilder();
             foreach (Match m in mc)
             {
-                IDbCommand cmd = conn.CreateCommand();
-                cmd.CommandText = String.Format( "INSERT INTO Errors (file_name, text) VALUES ('{0}', '{1}')", file_name, m.Value );
-                cmd.ExecuteNonQuery();
-            }            
+                line_matched.AppendLine(m.Value);
+            }
+
+            return line_matched.ToString();
         }
+
+        static void send_email(String mail_content)
+        { }
     }
 }
