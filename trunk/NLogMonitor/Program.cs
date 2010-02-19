@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Data.SQLite;
-using System.Data.Common;
-using System.Data;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
 using System.Net;
