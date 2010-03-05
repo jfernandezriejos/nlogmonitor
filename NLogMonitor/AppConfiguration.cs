@@ -43,6 +43,12 @@ namespace LogMonitor
         {
             get { return (String)this["Pass"]; }
         }
+
+        [ConfigurationProperty("EnableSsl", IsRequired = true)]
+        public bool EnableSsl
+        {
+            get { return (bool)this["EnableSsl"]; }
+        } 
     }
 
     class MailConfiguration : ConfigurationSection
@@ -56,9 +62,9 @@ namespace LogMonitor
         }
 
         [ConfigurationProperty("To", IsRequired = true)]
-        public int To
+        public String To
         {
-            get { return (int)this["To"]; }
-        }       
+            get { return (String)this["To"]; }
+        }        
     }
 }
