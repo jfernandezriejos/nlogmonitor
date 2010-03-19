@@ -14,6 +14,18 @@ namespace LogMonitor
         {
             get { return (String)this["Directory"]; }
         }
+
+        [ConfigurationProperty("FilePattern", IsRequired = true)]
+        public String FilePattern
+        {
+            get { return (String)this["FilePattern"]; }
+        }
+
+        [ConfigurationProperty("TextPattern", IsRequired = true)]
+        public String TextPattern
+        {
+            get { return (String)this["TextPattern"]; }
+        }
     }
 
     class SmtpConfiguration : ConfigurationSection
@@ -49,6 +61,12 @@ namespace LogMonitor
         {
             get { return (bool)this["EnableSsl"]; }
         } 
+        
+        [ConfigurationProperty("TimeBetweenSend", IsRequired = true)]
+        public int TimeBetweenSend
+        {
+            get { return (int)this["TimeBetweenSend"]; }
+        } 
     }
 
     class MailConfiguration : ConfigurationSection
@@ -65,6 +83,18 @@ namespace LogMonitor
         public String To
         {
             get { return (String)this["To"]; }
-        }        
+        }
+
+        [ConfigurationProperty("CC", IsRequired = true)]
+        public String CC
+        {
+            get { return (String)this["CC"]; }
+        }
+
+        [ConfigurationProperty("Subject", IsRequired = true)]
+        public String Subject
+        {
+            get { return (String)this["Subject"]; }
+        } 
     }
 }
