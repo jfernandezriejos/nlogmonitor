@@ -7,8 +7,6 @@ namespace LogMonitor
 {
     class AppConfiguration : ConfigurationSection
     {
-        static public AppConfiguration Instance = (AppConfiguration) ConfigurationManager.GetSection("AppConfiguration");
-
         [ConfigurationProperty("Directory", IsRequired = true)]
         public String Directory
         {
@@ -30,8 +28,6 @@ namespace LogMonitor
 
     class SmtpConfiguration : ConfigurationSection
     {
-        static public SmtpConfiguration Instance = (SmtpConfiguration)ConfigurationManager.GetSection("SmtpConfiguration");
-
         [ConfigurationProperty("Host", IsRequired = true)]
         public String Host
         {
@@ -71,8 +67,6 @@ namespace LogMonitor
 
     class MailConfiguration : ConfigurationSection
     {
-        static public MailConfiguration Instance = (MailConfiguration)ConfigurationManager.GetSection("MailConfiguration");
-
         [ConfigurationProperty("From", IsRequired = true)]
         public String From
         {
