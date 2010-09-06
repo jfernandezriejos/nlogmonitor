@@ -91,7 +91,8 @@ namespace LogMonitor
             MailMessage m       = new MailMessage(ma_from, ma_to);
 
             m.Body = mail_content;
-            m.Subject = mail_conf.Subject + " " + file_name;
+            m.Subject = mail_conf.AddFileName ? mail_conf.Subject + " " + file_name :
+                                                mail_conf.Subject;
 
             if (mail_conf.CC != "")
             {

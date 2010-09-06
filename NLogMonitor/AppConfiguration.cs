@@ -89,6 +89,12 @@ namespace LogMonitor
         public String Subject
         {
             get { return (String)this["Subject"]; }
+        }
+
+        [ConfigurationProperty("AddFileName", IsRequired = true)]
+        public bool AddFileName
+        {
+            get { return (bool)this["AddFileName"]; }
         } 
     }
 }
